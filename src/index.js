@@ -1,3 +1,8 @@
 import '@css/style.css';
+import { route } from '@/router';
 
-document.body.innerHTML = '<h1>Test test</h1>';
+document.addEventListener('DOMContentLoaded', () => {
+  route();
+});
+
+// route();

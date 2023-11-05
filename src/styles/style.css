@@ -1,1 +1,57 @@
 @import 'bootstrap';
+
+:root {
+  --theme-dark: #262a2f;
+  --accent-color: #ff5533;
+  --main-color: #fff;
+  --title-big-size: 40px;
+  --title-middle-size: 30px;
+}
+
+body {
+  background-color: var(--theme-dark);
+  color: var(--main-color);
+}
+.main .card-item .info .nick-name::after,
+.main .user-profile .top .name:after {
+  content: ',';
+  color: var(--main-color);
+}
+.header h5,
+.main .info .nick-name {
+  color: var(--accent-color);
+}
+.header button {
+  background-color: var(--accent-color);
+  color: var(--main-color);
+}
+
+.main .user-profile .top .name {
+  text-transform: uppercase;
+  font-size: var(--title-middle-size);
+  font-weight: bold;
+}
+
+.main .user-profile .top .nick-name {
+  font-size: var(--title-middle-size);
+}
+.main .info .bottom p span,
+.main .info .bottom .address,
+.main .repos .card-repo .nick-name {
+  color: var(--accent-color);
+}
+
+.main .desc h5 {
+  font-size: var(--title-middle-size);
+  text-transform: uppercase;
+}
+.main .desc a {
+  color: var(--accent-color);
+}
+
+.main .repos .card-repo p {
+  flex: 1;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
