@@ -1,4 +1,8 @@
-const markup = `
+import layout from './layout';
+
+export const markup = `${layout}<h1>PROFILE</h1>`;
+
+const markup1 = `
 <div class="container">
 <div class="header py-4 row row-gap-2 justify-content-between">
   <div class="col col-xl-3 d-flex">
@@ -85,6 +89,3 @@ const markup = `
 </div>
 </div>
 `;
-export function render() {
-  return markup;
-}

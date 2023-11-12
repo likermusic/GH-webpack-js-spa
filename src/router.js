@@ -1,25 +1,35 @@
+import render from './utils/render';
+
 function changePage() {
-  console.log('changePage');
+  // console.log(history);
+  history.pushState({}, '', '/user/defunkt');
+  routing();
 }
 
-export async function route() {
+export async function routing() {
   const routes = {
     '/': 'home.js',
-    '/profile': 'profile.js',
+    '/user/:login': 'user.js',
     '/search': 'search.js',
     404: '404.js',
   };
 
-  console.log('ROUTER');
   const path = location.pathname; //   /   /profile  /search
-  const route = routes[path] || routes[404]; // home.js
 
-  const { render } = await import(`@/pages/${route}`);
-  document.body.innerHTML += render();
-  // console.log(route);
+  const page =
+    (path.startsWith('/user/') && routes['/user/:login']) ||
+    routes[path] ||
+    routes[404]; // home.js
 
-  document.querySelector('#user').addEventListener('click', (e) => {
-    e.preventDefault();
-    changePage();
+  const { markup } = await import(`./pages/${page}`);
+  render(document.body, 'beforeend', markup, true);
+
+  document.querySelector('.container').addEventListener('click', (e) => {
+    if (e.target.matches('.btn')) {
+      changePage();
+    }
+
+    //   e.preventDefault();
+    //   changePage();
   });
 }

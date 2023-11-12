@@ -19,11 +19,6 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.json'],
-    alias: {
-      '@ass': path.resolve(__dirname, 'src/assets'),
-      '@css': path.resolve(__dirname, 'src/styles'),
-      '@': path.resolve(__dirname, 'src'),
-    },
   },
   optimization: {
     splitChunks: {

@@ -1,9 +1,6 @@
-import '@css/style.css';
-import { route } from '@/router';
+import './styles/style.css';
+import { routing } from './router';
 
 document.addEventListener('DOMContentLoaded', () => {
-  route();
+  routing();
 });
-
-// route();
-const a = 5;
