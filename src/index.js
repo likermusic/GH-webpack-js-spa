@@ -6,3 +6,4 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // route();
+const a = 5;
