@@ -1,6 +1,63 @@
+import render from '../utils/render';
 import layout from './layout';
 
 export const markup = layout;
+
+export async function actions() {
+  
+
+  // let id = 1;
+  // const intId = setInterval(()=>{
+  //   if (id <= 15) {
+  //     fetch('https://jsonplaceholder.typicode.com/posts/'+id)
+  //     .then((response) => response.json())
+  //     .then((json) => console.log(json));
+  
+  //     id++;
+  //   } else {
+  //     clearInterval(intId);
+  //   }
+  // },200);
+
+
+
+
+  // Работа с API
+  const proxy = 'https://hide.me/ru/';
+ /*
+  fetch('https://api.gihub.com/users')
+  .then(function(resp) {
+    return resp.json()
+  })
+  .then(function(data) {
+    console.log(data);
+  })
+  */
+  // const resp = await fetch('https://hide.me/ru/https://api.gihub.com/users/');
+  // const data = await resp.json();
+  const module = await import("../assets/users.json");
+  const data = module.default;
+  let output = `<div class="main row row-gap-4 column-gap-1 justify-content-between py-5">`
+  data.forEach((user)=>{
+    
+    output += `<div class="col-xl-3 col-md-5">
+      <div class="card-item d-flex align-items-center">
+        <img class="rounded-circle w-25" src="${user.avatar_url}" alt="">
+        <div class="info ms-2">
+          <div class="top">
+            <a class="nick-name" href="" id="user">${user.login}</a>
+            <label class="repos"><span>15</span> репозиториев</label>
+          </div>
+          <p class="bottom org-name mb-0">
+            ${user.organizations_url}
+          </p>
+        </div>
+      </div>
+    </div>`
+  })
+  output += `</div>`;
+  render(document.querySelector('.header'),'afterend', output);
+}
 
 const markup1 = `
 <div class="container">

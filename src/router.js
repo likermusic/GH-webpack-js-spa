@@ -21,8 +21,12 @@ export async function routing() {
     routes[path] ||
     routes[404]; // home.js
 
-  const { markup } = await import(`./pages/${page}`);
+  const { markup, actions } = await import(`./pages/${page}`);
   render(document.body, 'beforeend', markup, true);
+
+  actions();
+
+
 
   document.querySelector('.container').addEventListener('click', (e) => {
     if (e.target.matches('.btn')) {
