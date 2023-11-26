@@ -1,10 +1,12 @@
+import { changePage } from "../router";
 import render from "../utils/render";
 import layout from "./layout";
 
 export const markup = layout;
 
-export async function actions() {
+export function actions() {
   // Работа с API
+  //Закончить кэширование данных
 
   fetch("https://api.github.com/users", {
     method: "GET",
@@ -13,9 +15,19 @@ export async function actions() {
     },
   })
     .then(function (resp) {
+      if (resp.ok == false) {
+        throw new Error();
+      }
       return resp.json();
     })
     .then(function (data) {
+      fetchRepos(data);
+
+      localStorage.setItem("users", JSON.stringify(data));
+
+      // console.log(arr);
+      // console.log(data[0].repos);
+
       let output = `<div class="main row row-gap-4 column-gap-1 justify-content-between py-5">`;
       data.forEach((user) => {
         output += `<div class="col-xl-3 col-md-5">
@@ -23,11 +35,11 @@ export async function actions() {
             <img class="rounded-circle w-25" src="${user.avatar_url}" alt="">
             <div class="info ms-2">
               <div class="top">
-                <a class="nick-name" href="" id="user">${user.login}</a>
-                <label class="repos"><span>15</span> репозиториев</label>
+                <a class="nick-name" href="/user/${user.login}" id="user">${user.login}</a>
+                <label class="repos"><span>${user.repos}</span> репозиториев</label>
               </div>
               <p class="bottom org-name mb-0">
-                ${user.organizations_url}
+                ${user.organizations_url} 
               </p>
             </div>
           </div>
@@ -36,10 +48,46 @@ export async function actions() {
       output += `</div>`;
       render(document.querySelector(".header"), "afterend", output);
     })
-    .catch(function (error) {})
+    .catch(function (error) {
+      const msg =
+        "<p class='text-danger'>Произошла ошибка при получении данных</p>";
+      render(document.querySelector(".header"), "afterend", msg);
+    })
     .finally(function () {
       document.querySelector(".loader").remove();
     });
+
+  document.querySelector(".container").addEventListener("click", (e) => {
+    if (e.target.matches(".nick-name")) {
+      e.preventDefault();
+      changePage(e.target.pathname);
+    }
+  });
+}
+
+function fetchRepos(data) {
+  let arr = [];
+  data.forEach((user) => {
+    fetch(`https://api.github.com/users/${user.login}/repos`, {
+      method: "GET",
+      headers: {
+        Authorization: "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",
+      },
+    })
+      .then(function (resp) {
+        if (resp.ok == false) {
+          throw new Error();
+        }
+        return resp.json();
+      })
+      .then(function (data) {
+        // user.repos = data.length;
+        arr.push(data.length);
+      });
+  });
+  // console.log(arr);
+  // return data;
+  return arr;
 }
 
 const markup1 = `

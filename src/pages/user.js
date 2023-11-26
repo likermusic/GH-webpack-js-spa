@@ -1,22 +1,11 @@
-import layout from './layout';
+import layout from "./layout";
+import render from "../utils/render";
 
-export const markup = `${layout}<h1>PROFILE</h1>`;
+export const markup = `${layout}`;
 
-const markup1 = `
-<div class="container">
-<div class="header py-4 row row-gap-2 justify-content-between">
-  <div class="col col-xl-3 d-flex">
-    <h5>ПОЛЬЗОВАТЕЛИ ГИТХАБА</h5>
-    <span class="divider">&ensp;//&ensp;</span>
-    <label class="name">defunct</label>
-  </div>
-  <div class="col-12 col-xl-4 d-flex">
-    <input type="text" class="form-control me-2" placeholder="Поиск пользователя">
-    <button class="btn">НАЙТИ</button>
-  </div>
-</div>
-
-<div class="main row row-gap-4 justify-content-between py-5">
+export function actions() {
+  let output = `
+  <div class="main row row-gap-4 justify-content-between py-5">
   <div class="row">
     <div class="col">
       <div class="user-profile d-flex align-items-center">
@@ -88,4 +77,15 @@ const markup1 = `
 
 </div>
 </div>
+  `;
+  render(document.querySelector(".header"), "afterend", output);
+  document.querySelector(".loader").remove();
+
+  const users = JSON.parse(localStorage.getItem("users1")) || fetchUsers();
+}
+
+const markup1 = `
+
+
+
 `;

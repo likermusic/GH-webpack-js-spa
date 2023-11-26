@@ -1,7 +1,7 @@
 import render from "./utils/render";
 
-function changePage() {
-  history.pushState({}, "", "/user/defunkt");
+export function changePage(route) {
+  history.pushState({}, "", route);
   routing();
 }
 
