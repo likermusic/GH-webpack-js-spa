@@ -35,6 +35,10 @@ export async function actions() {
       });
       output += `</div>`;
       render(document.querySelector(".header"), "afterend", output);
+    })
+    .catch(function (error) {})
+    .finally(function () {
+      document.querySelector(".loader").remove();
     });
 }
 

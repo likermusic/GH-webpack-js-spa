@@ -1,3 +1,5 @@
+import loader from "../assets/loader/loader";
+
 export default `
 <div class="container">
   <div class="header py-4 row row-gap-2 justify-content-between">
@@ -11,5 +13,7 @@ export default `
       <button class="btn">НАЙТИ</button>
     </div>
   </div>
+
+  <div class="text-center loader">${loader}</div>
 </div>  
 `;
