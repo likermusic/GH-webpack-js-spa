@@ -1,9 +1,25 @@
 import layout from "./layout";
 import render from "../utils/render";
+import { fetchUser } from "../utils/api";
 
 export const markup = `${layout}`;
 
-export function actions() {
+export async function actions() {
+  let data;
+  const splitUrl = location.pathname.split("/");
+  const login = splitUrl[splitUrl.length - 1];
+
+  if (localStorage.getItem("users")) {
+    const users = JSON.parse(localStorage.getItem("users"));
+    data = users.find((user) => user.login === login);
+    const { deleteLoader } = await import("../utils/features");
+    deleteLoader();
+  } else {
+    data = await fetchUser(login);
+  }
+
+  console.log(data);
+
   let output = `
   <div class="main row row-gap-4 justify-content-between py-5">
   <div class="row">
@@ -78,10 +94,12 @@ export function actions() {
 </div>
 </div>
   `;
-  render(document.querySelector(".header"), "afterend", output);
-  document.querySelector(".loader").remove();
 
-  const users = JSON.parse(localStorage.getItem("users1")) || fetchUsers();
+  render(document.querySelector(".header"), "afterend", output);
+  // document.querySelector(".loader").remove();
+
+  // https://api.github.com/users/defunct
+  // const users = JSON.parse(localStorage.getItem("users1")) || fetchUsers();
 }
 
 const markup1 = `
