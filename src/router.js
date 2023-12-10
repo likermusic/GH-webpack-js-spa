@@ -1,4 +1,4 @@
-import render from "./utils/render";
+import { renderMarkup } from "./utils/render";
 
 export function changePage(route) {
   history.pushState({}, "", route);
@@ -21,7 +21,7 @@ export async function routing() {
     routes[404]; // home.js
 
   const { markup, actions } = await import(`./pages/${page}`);
-  render(document.body, "beforeend", markup, true);
+  renderMarkup(document.body, "beforeend", markup, true);
 
   actions();
 

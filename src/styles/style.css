@@ -1,4 +1,4 @@
-@import 'bootstrap';
+@import "bootstrap";
 
 :root {
   --theme-dark: #262a2f;
@@ -12,11 +12,11 @@ body {
   background-color: var(--theme-dark);
   color: var(--main-color);
 }
-.main .card-item .info .nick-name::after,
-.main .user-profile .top .name:after {
-  content: ',';
+.main .card-item .info .nick-name::after {
+  content: ",";
   color: var(--main-color);
 }
+
 .header h5,
 .main .info .nick-name {
   color: var(--accent-color);
