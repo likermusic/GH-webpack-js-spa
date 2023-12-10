@@ -2,7 +2,7 @@ import layout from "./layout";
 import { outputRepos, renderMarkup, renderUser } from "../utils/render";
 import { fetchUser, fetchUsers } from "../utils/api";
 
-export const markup = `${layout}`;
+export const markup = layout;
 
 export async function actions() {
   let data;
