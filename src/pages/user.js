@@ -1,6 +1,7 @@
 import layout from "./layout";
 import { outputRepos, renderMarkup, renderUser } from "../utils/render";
 import { fetchUser, fetchUsers } from "../utils/api";
+import { commonListeners, listenersUser } from "../utils/listeners";
 
 export const markup = layout;
 
@@ -20,20 +21,9 @@ export async function actions() {
     deleteLoader();
   }
 
-  renderUser(data);
-
-  document.querySelector(".container").addEventListener("click", (e) => {
-    if (e.target.matches(".all-repos")) {
-      e.preventDefault();
-      const output = outputRepos(
-        data.reposArray,
-        6,
-        data.reposArray.length - 1
-      );
-      renderMarkup(document.querySelector(".repos"), "beforeend", output);
-    }
-  });
+  if (data) {
+    renderUser(data);
+    commonListeners();
+    listenersUser(data);
+  }
 }
-
-const markup1 = `
-`;

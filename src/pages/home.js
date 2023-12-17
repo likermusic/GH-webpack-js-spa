@@ -1,8 +1,9 @@
 import { changePage } from "../router";
 import { fetchUsers } from "../utils/api";
+import { getUsers } from "../utils/features";
+import { commonListeners, listenersHome } from "../utils/listeners";
 import { renderUsers } from "../utils/render";
 import layout from "./layout";
-
 export const markup = layout;
 
 /*
@@ -42,28 +43,10 @@ export const markup = layout;
 */
 
 export async function actions() {
-  // ------------------------
-
-  // Работа с API
-  //Закончить кэширование данных
-  // const data =
-  //   JSON.parse(localStorage.getItem("users")) || (await fetchUsers());
-
-  let data;
-  if (localStorage.getItem("users")) {
-    data = JSON.parse(localStorage.getItem("users"));
-    const { deleteLoader } = await import("../utils/features");
-    deleteLoader();
-  } else {
-    data = await fetchUsers();
+  const data = await getUsers();
+  if (data && data.length > 0) {
+    renderUsers(data);
+    listenersHome();
+    commonListeners();
   }
-
-  renderUsers(data);
-
-  document.querySelector(".container").addEventListener("click", (e) => {
-    if (e.target.matches(".nick-name")) {
-      e.preventDefault();
-      changePage(e.target.pathname);
-    }
-  });
 }

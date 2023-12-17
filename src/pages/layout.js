@@ -9,8 +9,8 @@ export default `
       <label class="name"></label>
     </div>
     <div class="col-12 col-xl-4 d-flex">
-      <input type="text" class="form-control me-2" placeholder="Поиск пользователя">
-      <button class="btn">НАЙТИ</button>
+      <input type="text" class="user-search form-control me-2" placeholder="Поиск пользователя">
+      <a href="/search" class="btn btn-search">НАЙТИ</a>
     </div>
   </div>
 

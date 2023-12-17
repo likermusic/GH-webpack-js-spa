@@ -1,7 +1,7 @@
-import './styles/style.css';
-import { routing } from './router';
+import "./styles/style.css";
+import { routing } from "./router";
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   routing();
 });
 

@@ -1,3 +1,5 @@
+import { renderMarkup } from "./render";
+
 const key = "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";
 
 export function fetchUsers() {
@@ -19,10 +21,10 @@ export function fetchUsers() {
       // Actions
     })
     .catch(function (error) {
-      // const msg =
-      //   "<p class='text-danger'>Произошла ошибка при получении данных</p>";
-      // render(document.querySelector(".header"), "afterend", msg);
-      alert(error);
+      const msg =
+        "<p class='text-danger'>Произошла ошибка при получении данных</p>";
+      renderMarkup(document.querySelector(".header"), "afterend", msg);
+      // alert(error);
     })
     .finally(async function () {
       const { deleteLoader } = await import("./features");
@@ -79,7 +81,11 @@ export function fetchUsers() {
   }
 
   return promise.then((data) => {
-    localStorage.setItem("users", JSON.stringify(data));
+    if (data && Array.isArray(data)) {
+      localStorage.setItem("users", JSON.stringify(data));
+    } else {
+      data = [];
+    }
     return data;
   });
 }

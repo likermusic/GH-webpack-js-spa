@@ -1,7 +1,7 @@
 import { renderMarkup } from "./utils/render";
 
-export function changePage(route) {
-  history.pushState({}, "", route);
+export function changePage(route, data = {}) {
+  history.pushState(data, "", route);
   routing();
 }
 

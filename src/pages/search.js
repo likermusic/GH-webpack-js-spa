@@ -1,8 +1,14 @@
+import { deleteLoader } from "../utils/features";
+// import { renderSearch } from "../utils/render";
 import layout from "./layout";
 
 export const markup = layout;
 
-export function actions() {}
+export function actions() {
+  const searchValue = history.state.searchValue;
+  // renderSearch(searchValue);
+  // deleteLoader();
+}
 
 const markup1 = `
 <div class="title mt-2 h1 text-uppercase">пользователи по запросу <span>defunct</span></div>

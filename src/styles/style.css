@@ -21,7 +21,7 @@ body {
 .main .info .nick-name {
   color: var(--accent-color);
 }
-.header button {
+.btn-search {
   background-color: var(--accent-color);
   color: var(--main-color);
 }

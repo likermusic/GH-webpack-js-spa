@@ -1,3 +1,6 @@
+import { fetchUsers } from "./api";
+import { getUsers } from "./features";
+
 export function renderMarkup(source, position, markup, clear = false) {
   if (clear) {
     // eslint-disable-next-line
@@ -86,3 +89,44 @@ export function outputRepos(repos, start, end) {
   }
   return output;
 }
+/*
+export async function renderSearch(searchValue) {
+  const users = await getUsers();
+  console.log(users);
+  if (!users) {
+    return;
+  }
+  const filteredUsers = users.filter((user) =>
+    user.login.toLowerCase().includes(searchValue.toLowerCase())
+  );
+
+  let output = "";
+  output += `
+  <div class="title mt-2 h1 text-uppercase">пользователи по запросу <span>${searchValue}</span></div>
+  <div class="main row row-gap-4 column-gap-1 justify-content-between py-5">
+  `;
+
+  filteredUsers.forEach((user) => {
+    output += `<div class="col-xl-3 col-md-5">
+    <div class="card-item d-flex align-items-center">
+      <img class="rounded-circle w-25" src="${user.avatar_url}" alt="">
+      <div class="info ms-2">
+        <div class="top">
+          <a class="nick-name" href="">${user.login}</a>
+          <label class="repos"><span>${user.repos}</span> репозиториев</label>
+        </div>
+        <p class="bottom org-name mb-0">
+          ${user.organizations_url}
+        </p>
+      </div>
+    </div>
+  </div>`;
+  });
+
+  output += `</div>
+  </div>
+  `;
+
+  renderMarkup(document.querySelector(".header"), "afterend", output);
+}
+*/
