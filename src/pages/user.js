@@ -22,6 +22,7 @@ export async function actions() {
   }
 
   if (data) {
+    // добавить условие на массив
     renderUser(data);
     commonListeners();
     listenersUser(data);
