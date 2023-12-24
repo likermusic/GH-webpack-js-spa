@@ -67,7 +67,11 @@ export function fetchUsers() {
           users[ind].repos = repositories.length; // 30
           const reposArr = [];
           repositories.forEach((repo) => {
-            reposArr.push({ name: repo.name, description: repo.description });
+            reposArr.push({
+              name: repo.name,
+              description: repo.description,
+              url: repo.html_url,
+            });
           });
           users[ind].reposArray = reposArr;
 

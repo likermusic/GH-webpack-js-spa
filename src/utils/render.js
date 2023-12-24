@@ -48,7 +48,9 @@ export function renderUser(data) {
               <span class="mx-2">&#183;</span>
               <p class="followed mb-0"><span>${data.following.length}</span> подписок</p>
               <span class="mx-2">&#183;</span>
-              <p class="address mb-0">${data.html_url}</p>
+              <p class="address mb-0">
+                <a href="${data.html_url}">${data.html_url}</a>
+              </p>
           </div>
         </div>
       </div>
@@ -82,7 +84,7 @@ export function outputRepos(repos, start, end) {
   for (let index = start; index <= end; index++) {
     output += `<div class="col-12 col-sm-6">
     <div class="card-repo p-3 border border-light rounded">
-      <a href="" class="nick-name">${repos[index].name}</a>
+      <a href="${repos[index].url}" class="nick-name">${repos[index].name}</a>
       <p class="mb-0">${repos[index].description}</p>
     </div>
    </div> `;

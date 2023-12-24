@@ -39,7 +39,7 @@ body {
   font-size: var(--title-middle-size);
 }
 .main .info .bottom p span,
-.main .info .bottom .address,
+.main .info .bottom .address a,
 .main .repos .card-repo .nick-name {
   color: var(--accent-color);
 }

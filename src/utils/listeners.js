@@ -11,17 +11,22 @@ export function listenersHome() {
 }
 
 export function listenersUser(data) {
-  document.querySelector(".container").addEventListener("click", (e) => {
-    if (e.target.matches(".all-repos")) {
-      e.preventDefault();
-      const output = outputRepos(
-        data.reposArray,
-        6,
-        data.reposArray.length - 1
-      );
-      renderMarkup(document.querySelector(".repos"), "beforeend", output);
-    }
-  });
+  document
+    .querySelector(".container")
+    .addEventListener("click", function handler(e) {
+      if (e.target.matches(".all-repos")) {
+        e.preventDefault();
+        const output = outputRepos(
+          data.reposArray,
+          6,
+          data.reposArray.length - 1
+        );
+        renderMarkup(document.querySelector(".repos"), "beforeend", output);
+        document
+          .querySelector(".container")
+          .removeEventListener("click", handler);
+      }
+    });
 }
 
 export function listenersSearch() {}
