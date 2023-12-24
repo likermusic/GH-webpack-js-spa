@@ -11,8 +11,6 @@ export async function getUsers() {
     if (!Array.isArray(data)) {
       data = await fetchUsers();
     }
-    const { deleteLoader } = await import("../utils/features");
-    deleteLoader();
   } else {
     data = await fetchUsers();
   }

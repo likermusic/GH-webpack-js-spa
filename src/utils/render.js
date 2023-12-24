@@ -89,20 +89,23 @@ export function outputRepos(repos, start, end) {
   }
   return output;
 }
-/*
+
 export async function renderSearch(searchValue) {
   const users = await getUsers();
-  console.log(users);
   if (!users) {
-    return;
+    return null;
   }
   const filteredUsers = users.filter((user) =>
     user.login.toLowerCase().includes(searchValue.toLowerCase())
   );
 
+  if (filteredUsers.length === 0) {
+    return null;
+  }
+
   let output = "";
   output += `
-  <div class="title mt-2 h1 text-uppercase">пользователи по запросу <span>${searchValue}</span></div>
+  <div class="title mt-2 h1 text-uppercase">пользователи по запросу: <span>${searchValue}</span></div>
   <div class="main row row-gap-4 column-gap-1 justify-content-between py-5">
   `;
 
@@ -128,5 +131,6 @@ export async function renderSearch(searchValue) {
   `;
 
   renderMarkup(document.querySelector(".header"), "afterend", output);
+
+  return true;
 }
-*/

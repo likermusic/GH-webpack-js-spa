@@ -14,6 +14,6 @@ export default `
     </div>
   </div>
 
-  <div class="text-center loader">${loader}</div>
+  <!-- <div class="text-center loader">${loader}</div> -->
 </div>  
 `;

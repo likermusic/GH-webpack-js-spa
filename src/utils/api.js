@@ -25,11 +25,11 @@ export function fetchUsers() {
         "<p class='text-danger'>Произошла ошибка при получении данных</p>";
       renderMarkup(document.querySelector(".header"), "afterend", msg);
       // alert(error);
-    })
-    .finally(async function () {
-      const { deleteLoader } = await import("./features");
-      deleteLoader();
     });
+  // .finally(async function () {
+  //   const { deleteLoader } = await import("./features");
+  //   deleteLoader();
+  // });
 
   function fetchRepos(users) {
     const promises = users.map((user, ind) => {
