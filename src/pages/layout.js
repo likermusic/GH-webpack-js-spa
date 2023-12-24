@@ -4,7 +4,9 @@ export default `
 <div class="container">
   <div class="header py-4 row row-gap-2 justify-content-between">
     <div class="col col-xl-3 d-flex">
-      <h5>ПОЛЬЗОВАТЕЛИ ГИТХАБА</h5>
+      <h5>
+        <a class="logo" href="/">ПОЛЬЗОВАТЕЛИ ГИТХАБА</a>
+      </h5>
       <span class="divider"></span>
       <label class="name"></label>
     </div>

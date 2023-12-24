@@ -17,9 +17,12 @@ body {
   color: var(--main-color);
 }
 
-.header h5,
+.header h5 .logo,
 .main .info .nick-name {
   color: var(--accent-color);
+}
+.header h5 .logo {
+  text-decoration: none;
 }
 .btn-search {
   background-color: var(--accent-color);

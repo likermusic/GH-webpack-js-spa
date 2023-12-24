@@ -33,5 +33,9 @@ export function commonListeners() {
       const searchValue = document.querySelector(".user-search").value;
       changePage(e.target.pathname, { searchValue: searchValue });
     }
+    if (e.target.matches(".logo")) {
+      e.preventDefault();
+      changePage(e.target.pathname);
+    }
   });
 }
