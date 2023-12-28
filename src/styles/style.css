@@ -24,7 +24,8 @@ body {
 .header h5 .logo {
   text-decoration: none;
 }
-.btn-search {
+.btn-search,
+.btn-back {
   background-color: var(--accent-color);
   color: var(--main-color);
 }

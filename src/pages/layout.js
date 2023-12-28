@@ -14,6 +14,9 @@ export default `
       <input type="text" class="user-search form-control me-2" placeholder="Поиск пользователя">
       <a href="/search" class="btn btn-search">НАЙТИ</a>
     </div>
+    <div class="row">
+      <a class="col-1 btn btn-sm btn-back ms-3 mt-3" href="">&lt;&lt;Назад</a>
+    </div>
   </div>
 
   <!-- <div class="text-center loader">${loader}</div> -->

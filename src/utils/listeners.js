@@ -31,18 +31,43 @@ export function listenersUser(data) {
   });
 }
 
-export function listenersSearch() {}
+// export function listenersSearch() {}
 
 export function commonListeners() {
-  document.querySelector(".container").addEventListener("click", (e) => {
-    if (e.target.matches(".btn-search")) {
+  function btnsClickHandler(e, isEnter = false) {
+    if (e.target.matches(".btn-search") || isEnter) {
       e.preventDefault();
+      let uri = "/search";
       const searchValue = document.querySelector(".user-search").value;
-      changePage(e.target.pathname, { searchValue: searchValue });
+      changePage(uri, { searchValue: searchValue });
     }
     if (e.target.matches(".logo")) {
       e.preventDefault();
       changePage(e.target.pathname);
     }
+    if (e.target.matches(".btn-back")) {
+      e.preventDefault();
+      history.back();
+      // changePage(e.target.pathname);
+    }
+  }
+
+  document.body.addEventListener("keyup", (e) => {
+    if (e.key === "Enter") {
+      btnsClickHandler(e, true);
+    }
   });
+
+  document
+    .querySelector(".container")
+    .addEventListener("click", btnsClickHandler.bind());
+
+  window.addEventListener(
+    "popstate",
+    () => {
+      // history.length = 1;
+      changePage(location.pathname);
+    },
+    { once: true }
+  );
 }
