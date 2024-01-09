@@ -106,31 +106,3 @@ export function fetchUser(login) {
       return data;
     });
 }
-
-/*
-
-  function fetchRepos(users) {
-    const promises = users.map((user, ind) => {
-
-      return fetch(`https://api.github.com/users/${user.login}/repos`, {
-        method: "GET",
-        headers: {
-          Authorization: key,
-        },
-      })
-        .then((response) => response.json())
-        .then((repositories) => {
-          users[ind].repos = repositories.length; // 30
-          const reposArr = [];
-          repositories.forEach((repo) => {
-            reposArr.push({ name: repo.name, description: repo.description });
-          });
-          users[ind].reposArray = reposArr;
-        });
-        
-    });
-
-    return Promise.all(promises).then(() => users);
-  }
-
-*/

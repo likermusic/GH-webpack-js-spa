@@ -1,4 +1,3 @@
-import { fetchUsers } from "./api";
 import { getUsers } from "./features";
 
 export function renderMarkup(source, position, markup, clear = false) {

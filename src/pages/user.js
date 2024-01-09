@@ -1,6 +1,6 @@
 import layout from "./layout";
-import { outputRepos, renderMarkup, renderUser } from "../utils/render";
-import { fetchUser, fetchUsers } from "../utils/api";
+import { renderUser } from "../utils/render";
+import { fetchUser } from "../utils/api";
 import { commonListeners, listenersUser } from "../utils/listeners";
 
 export const markup = layout;
@@ -22,7 +22,6 @@ export async function actions() {
   }
 
   if (data) {
-    // добавить условие на массив
     renderUser(data);
     commonListeners();
     listenersUser(data);

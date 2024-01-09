@@ -24,14 +24,9 @@ export function listenersUser(data) {
         renderMarkup(document.querySelector(".repos"), "beforeend", output);
         isClicked = true;
       }
-      // document
-      //   .querySelector(".container")
-      //   .removeEventListener("click", handler);
     }
   });
 }
-
-// export function listenersSearch() {}
 
 export function commonListeners() {
   function btnsClickHandler(e, isEnter = false) {
@@ -48,7 +43,6 @@ export function commonListeners() {
     if (e.target.matches(".btn-back")) {
       e.preventDefault();
       history.back();
-      // changePage(e.target.pathname);
     }
   }
 
@@ -65,7 +59,6 @@ export function commonListeners() {
   window.addEventListener(
     "popstate",
     () => {
-      // history.length = 1;
       changePage(location.pathname);
     },
     { once: true }

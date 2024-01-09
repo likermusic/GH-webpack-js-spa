@@ -13,11 +13,10 @@ export async function routing() {
     "/search": "search.js",
   };
 
-  const path = location.pathname; //   /   /profile  /search
+  const path = location.pathname;
 
   const page =
     (path.startsWith("/user/") && routes["/user/:login"]) || routes[path];
-  // || routes[404]; // home.js
 
   const { markup, actions } = await import(`./pages/${page}`);
 
@@ -26,10 +25,4 @@ export async function routing() {
   renderMarkup(document.querySelector(".header"), "afterend", loaderMarkup);
 
   actions();
-
-  // document.querySelector('.container').addEventListener('click', (e) => {
-  //   if (e.target.matches('.btn')) {
-  //     changePage();
-  //   }
-  // });
 }
