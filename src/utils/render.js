@@ -1,3 +1,4 @@
+import Cookies from "js-cookie";
 import { getUsers } from "./features";
 
 export function renderMarkup(source, position, markup, clear = false) {
@@ -48,7 +49,7 @@ export function renderUser(data) {
               <p class="followed mb-0"><span>${data.following.length}</span> подписок</p>
               <span class="mx-2">&#183;</span>
               <p class="address mb-0">
-                <a href="${data.html_url}">${data.html_url}</a>
+                <a target="_blank" href="${data.html_url}">${data.html_url}</a>
               </p>
           </div>
         </div>
@@ -83,7 +84,7 @@ export function outputRepos(repos, start, end) {
   for (let index = start; index <= end; index++) {
     output += `<div class="col-12 col-sm-6">
     <div class="card-repo p-3 border border-light rounded">
-      <a href="${repos[index].url}" class="nick-name">${repos[index].name}</a>
+      <a target="_blank" href="${repos[index].url}" class="nick-name">${repos[index].name}</a>
       <p class="mb-0">${repos[index].description}</p>
     </div>
    </div> `;
@@ -92,6 +93,13 @@ export function outputRepos(repos, start, end) {
 }
 
 export async function renderSearch(searchValue) {
+  if (searchValue) {
+    // Save the searchValue to a cookie that expires in 1 hour
+    Cookies.set("searchValue", searchValue, { expires: 1 / 24 });
+  } else {
+    searchValue = Cookies.get("searchValue");
+  }
+
   const users = await getUsers();
   if (!users) {
     return null;
@@ -116,7 +124,7 @@ export async function renderSearch(searchValue) {
       <img class="rounded-circle w-25" src="${user.avatar_url}" alt="">
       <div class="info ms-2">
         <div class="top">
-          <a class="nick-name" href="">${user.login}</a>
+          <a class="nick-name" href="/user/${user.login}">${user.login}</a>
           <label class="repos"><span>${user.repos}</span> репозиториев</label>
         </div>
         <p class="bottom org-name mb-0">

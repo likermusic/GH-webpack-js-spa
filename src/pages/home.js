@@ -1,5 +1,5 @@
 import { getUsers } from "../utils/features";
-import { commonListeners, listenersHome } from "../utils/listeners";
+import { commonListeners } from "../utils/listeners";
 import { renderUsers } from "../utils/render";
 import layout from "./layout";
 export const markup = layout;
@@ -11,7 +11,7 @@ export async function actions() {
 
   if (data && data.length > 0) {
     renderUsers(data);
-    listenersHome();
     commonListeners();
+    document.querySelector(".btn-back").remove();
   }
 }

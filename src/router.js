@@ -2,6 +2,7 @@ import loader from "./assets/loader/loader";
 import { renderMarkup } from "./utils/render";
 
 export function changePage(route, data = {}) {
+  // console.log("changePage");
   history.pushState(data, "", route);
   routing();
 }

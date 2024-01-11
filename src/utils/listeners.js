@@ -1,15 +1,6 @@
 import { changePage } from "../router";
 import { outputRepos, renderMarkup } from "./render";
 
-export function listenersHome() {
-  document.querySelector(".container").addEventListener("click", (e) => {
-    if (e.target.matches(".nick-name")) {
-      e.preventDefault();
-      changePage(e.target.pathname);
-    }
-  });
-}
-
 export function listenersUser(data) {
   let isClicked = false;
   document.querySelector(".container").addEventListener("click", (e) => {
@@ -41,7 +32,6 @@ export function commonListeners() {
       changePage(e.target.pathname);
     }
     if (e.target.matches(".btn-back")) {
-      e.preventDefault();
       history.back();
     }
   }
@@ -56,11 +46,10 @@ export function commonListeners() {
     .querySelector(".container")
     .addEventListener("click", btnsClickHandler.bind());
 
-  window.addEventListener(
-    "popstate",
-    () => {
-      changePage(location.pathname);
-    },
-    { once: true }
-  );
+  document.querySelector(".container").addEventListener("click", (e) => {
+    if (e.target.matches(".nick-name")) {
+      e.preventDefault();
+      changePage(e.target.pathname);
+    }
+  });
 }
